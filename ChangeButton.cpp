@@ -46,7 +46,7 @@ void ChangeButton::processInput(sf::Event& event)
 
 void ChangeButton::calculateBills()
 {
-	// four types of bills: 5000, 1000, 500, 100 and 50
+	// five types of bills: 5000, 1000, 500, 100 and 50
 	int remainder{ 0 };
 	Globals::bills[0] = Globals::amountToReturn / 5000;
 	remainder = Globals::amountToReturn % 5000;
@@ -131,7 +131,6 @@ void changeListBoxCallback(tgui::String item)
 		Globals::amountToReturn = 0;
 		ChangeButton::nullifyBills();
 		ChangeButton::removeListBox();
-
 	}
 }
 

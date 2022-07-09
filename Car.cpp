@@ -27,12 +27,12 @@ void Car::moveCarSprite()
 
 bool Car::isInFuelingPlace()
 {
-	return (m_carSprite.getPosition().x >= coords::carFuelingX);
+	return (m_carSprite.getPosition().x == coords::carFuelingX);
 }
 
 bool Car::hasFinished()
 {
-	return (m_carSprite.getPosition().x >= coords::carFinishX);
+	return (m_carSprite.getPosition().x == coords::carFinishX);
 }
 
 void Car::switchCarColor(sf::Sprite& carSprite)

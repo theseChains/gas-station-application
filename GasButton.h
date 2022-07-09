@@ -14,6 +14,10 @@ private:
 	tgui::Button::Ptr m_checkMarkButton{};
 	tgui::Button::Ptr m_crossButton{};
 	sf::Font m_font{};
+	bool m_progress{};
+	bool m_fueled{};
+	bool m_noChange{};
+	float m_textToShow{};
 
 public:
 	GasButton();
@@ -21,14 +25,8 @@ public:
 	// make getters for these
 	sf::Text m_exchangeRate{}; // make these render only if ...
 	sf::Text m_sliderValues{};
-	sf::Clock m_clock{};
-	sf::Time m_elapsed{};
-	bool m_progress{};
-	static float m_sliderProgressValue;
-	float m_textToShow{};
+
 	static int m_tempSliderValue;
-	bool m_fueled{};
-	bool m_noChange{};
 
 	void createButton(GasType gas);
 	void processInput(sf::Event& event, GasType gas);
@@ -46,6 +44,14 @@ public:
 	void removeUtilButtons();
 	void checkSumSufficiency(GasType gas);
 	void showProgress();
+
+	bool isFueled() const;
+	bool noChangeLeft() const;
+	bool isFueling() const;
+
+	void setFueling(bool statement);
+	void setNoChangeLeft(bool statement);
+	void setIsFueled(bool statement);
 };
 
 #endif

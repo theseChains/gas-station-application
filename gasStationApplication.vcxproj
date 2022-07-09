@@ -152,7 +152,7 @@
     <ClCompile Include="Car.cpp" />
     <ClCompile Include="ChangeButton.cpp" />
     <ClCompile Include="GasButton.cpp" />
-    <ClCompile Include="gasStationApplication.cpp" />
+    <ClCompile Include="Main.cpp" />
     <ClCompile Include="Globals.cpp" />
     <ClCompile Include="InsertButton.cpp" />
     <ClCompile Include="ReturnButton.cpp" />

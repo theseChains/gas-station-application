@@ -105,7 +105,7 @@ namespace coords
 
     // cars
     inline constexpr int carStartX{ -1100 };
-    inline constexpr int carFuelingX{ 95 };
+    inline constexpr int carFuelingX{ 90 };
     inline constexpr int carFinishX{ 1180 };
     inline constexpr int carY{ 300 };
 }

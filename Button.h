@@ -8,6 +8,8 @@ class Button
 {
 protected:
 	tgui::Button::Ptr m_button{};
+	// true if active, false if inactive
+	bool m_state{};
 
 	void setupMoney();
 
@@ -17,6 +19,9 @@ public:
 	// make getters for these
 	sf::Texture m_moneyTexture{};
 	sf::Sprite m_moneySprite{};
+
+	void setActive(bool statement);
+	bool isActive() const;
 };
 
 #endif

@@ -2,7 +2,6 @@
 
 #include <iostream>
 
-float GasButton::m_sliderProgressValue{};
 int GasButton::m_tempSliderValue{};
 
 GasButton::GasButton()
@@ -90,7 +89,7 @@ void GasButton::showProgress()
 {
 	if (static_cast<int>(m_textToShow) < m_tempSliderValue)
 	{
-		m_textToShow += 0.16f;
+		m_textToShow += 0.16f; // adds 9.6 litres per second (per 60 frames)
 		Globals::mainScreenText.setString(text::progress + std::to_wstring(static_cast<int>(m_textToShow)) + L" ë");
 	}
 	else
@@ -106,7 +105,9 @@ void GasButton::showProgress()
 				+ std::to_wstring(static_cast<int>(m_textToShow)) + L" ë");
 			m_noChange = true;
 		}
+		// finished fueling
 		m_fueled = true;
+		// fueling progress done
 		m_progress = false;
 		m_textToShow = 0;
 	}
@@ -121,17 +122,11 @@ void GasButton::checkSumSufficiency(GasType gas)
 			Globals::amountToReturn = Globals::sum + static_cast<int>(Globals::gasSlider->getValue() * cfg::gas95Price);
 		else
 			Globals::amountToReturn = Globals::sum + static_cast<int>(Globals::gasSlider->getValue() * cfg::gas92Price);
-		Globals::sum = 0;
-		removeSlider();
-		removeUtilButtons();
 	}
 	else if (Globals::sum >= 0)
 	{
 		Globals::amountToReturn = Globals::sum;
-		Globals::sum = 0;
 		m_progress = true;
-		removeSlider();
-		removeUtilButtons();
 	}
 }
 
@@ -152,8 +147,9 @@ void GasButton::handleCheckMarkInput(sf::Event& event, GasType gas)
 			checkSumSufficiency(gas);
 		}
 
-		m_exchangeRate.setString("");
-		m_sliderValues.setString("");
+		Globals::sum = 0;
+		removeSlider();
+		removeUtilButtons();
 	}
 }
 
@@ -166,9 +162,6 @@ void GasButton::handleCrossInput(sf::Event& event)
 		Globals::mainScreenText.setString(text::sum + std::to_wstring(Globals::sum) + text::chooseGas);
 		removeSlider();
 		removeUtilButtons();
-
-		m_exchangeRate.setString("");
-		m_sliderValues.setString("");
 	}
 }
 
@@ -184,38 +177,34 @@ void slider95Callback()
 {
 	Globals::mainScreenText.setString(text::sum + std::to_wstring(Globals::sum) + text::toPay
 		+ std::to_wstring(static_cast<int>(Globals::gasSlider->getValue()) * cfg::gas95Price));
-	GasButton::m_sliderProgressValue = Globals::gasSlider->getValue();
-	GasButton::m_tempSliderValue = static_cast<int>(GasButton::m_sliderProgressValue);
+	GasButton::m_tempSliderValue = static_cast<int>(Globals::gasSlider->getValue());
 }
 
 void slider92Callback()
 {
 	Globals::mainScreenText.setString(text::sum + std::to_wstring(Globals::sum) + text::toPay
 		+ std::to_wstring(static_cast<int>(Globals::gasSlider->getValue()) * cfg::gas92Price));
-	GasButton::m_sliderProgressValue = Globals::gasSlider->getValue();
-	GasButton::m_tempSliderValue = static_cast<int>(GasButton::m_sliderProgressValue);
+	GasButton::m_tempSliderValue = static_cast<int>(Globals::gasSlider->getValue());
 }
 
 void GasButton::handle95SliderInput()
 {
 	Globals::gasSlider->onValueChange(&slider95Callback);
 	// if the user doesn't change the slider value, register the set value too!
-	GasButton::m_sliderProgressValue = Globals::gasSlider->getValue();
-	GasButton::m_tempSliderValue = static_cast<int>(GasButton::m_sliderProgressValue);
+	GasButton::m_tempSliderValue = static_cast<int>(Globals::gasSlider->getValue());
 }
 
 void GasButton::handle92SliderInput()
 {
 	Globals::gasSlider->onValueChange(&slider92Callback);
 	// if the user doesn't change the slider value, register the set value too!
-	GasButton::m_sliderProgressValue = Globals::gasSlider->getValue();
-	GasButton::m_tempSliderValue = static_cast<int>(GasButton::m_sliderProgressValue);
+	GasButton::m_tempSliderValue = static_cast<int>(Globals::gasSlider->getValue());
 }
 
 void GasButton::createCheckMarkButton()
 {
 	m_checkMarkButton = tgui::Button::create();
-	tgui::Theme checkBoxTheme{ "media/themes/checkBoxButtonTheme.txt" };
+	tgui::Theme checkBoxTheme{ "media/themes/checkBoxButtonTheme.txt" }; // checkmark, not checkbox...
 	m_checkMarkButton->setRenderer(checkBoxTheme.getRenderer("Button"));
 	m_checkMarkButton->setPosition(coords::checkMarkButtonX, coords::checkMarkButtonY);
 	m_checkMarkButton->setSize(sizes::utilButtonW, sizes::utilButtonH);
@@ -249,4 +238,34 @@ void GasButton::removeSlider()
 {
 	Globals::gui.remove(Globals::gasSlider);
 	Globals::gasSlider = nullptr;
+}
+
+bool GasButton::isFueled() const
+{
+	return m_fueled;
+}
+
+bool GasButton::noChangeLeft() const
+{
+	return m_noChange;
+}
+
+bool GasButton::isFueling() const
+{
+	return m_progress;
+}
+
+void GasButton::setFueling(bool statement)
+{
+	m_progress = statement;
+}
+
+void GasButton::setNoChangeLeft(bool statement)
+{
+	m_noChange = statement;
+}
+
+void GasButton::setIsFueled(bool statement)
+{
+	m_fueled = statement;
 }

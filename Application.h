@@ -22,14 +22,18 @@ private:
 	ChangeButton m_changeButton{};
 	GasButton m_petrol95Button{};
 	GasButton m_petrol92Button{};
+
 	Car m_car{};
 
 	sf::Font m_font{};
 	sf::Texture m_texture{};
+	sf::Texture m_gasStationFueling{};
 	sf::Sprite m_gasStation{};
 	sf::Color m_backgroundColor{};
-	sf::Texture m_gasStationFueling{};
 
+	void registerStates();
+	void processStates(sf::Event& event);
+	void processNonEventState();
 	void processEvents();
 	void render();
 	void loadGasStation();
