@@ -11,6 +11,7 @@
 #include "Globals.h"
 #include "Config.h"
 #include "Car.h"
+#include "State.h"
 
 class Application
 {
@@ -22,8 +23,9 @@ private:
 	ChangeButton m_changeButton{};
 	GasButton m_petrol95Button{};
 	GasButton m_petrol92Button{};
-
 	Car m_car{};
+
+	State m_appState;
 
 	sf::Font m_font{};
 	sf::Texture m_texture{};
@@ -31,8 +33,6 @@ private:
 	sf::Sprite m_gasStation{};
 	sf::Color m_backgroundColor{};
 
-	void registerStates();
-	void processStates(sf::Event& event);
 	void processNonEventState();
 	void processEvents();
 	void render();

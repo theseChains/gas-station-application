@@ -11,7 +11,7 @@
 class InsertButton : public Button
 {
 private:
-	static tgui::ListBox::Ptr m_listBox; // should be put in Globals but whatever
+	static tgui::ListBox::Ptr m_listBox;
 	tgui::Button::Ptr m_checkmark{};
 	tgui::Theme m_checkmarkTheme{};
 	tgui::Theme m_checkmarkLitTheme{};

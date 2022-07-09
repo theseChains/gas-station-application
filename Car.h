@@ -22,7 +22,7 @@ public:
 	bool isInFuelingPlace();
 	void moveCarSprite();
 	bool hasFinished();
-	void switchCarColor(sf::Sprite& carSprite);
+	void switchCarColor();
 };
 
 #endif

@@ -156,6 +156,7 @@
     <ClCompile Include="Globals.cpp" />
     <ClCompile Include="InsertButton.cpp" />
     <ClCompile Include="ReturnButton.cpp" />
+    <ClCompile Include="State.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -167,6 +168,7 @@
     <ClInclude Include="Globals.h" />
     <ClInclude Include="InsertButton.h" />
     <ClInclude Include="ReturnButton.h" />
+    <ClInclude Include="State.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -35,14 +35,14 @@ bool Car::hasFinished()
 	return (m_carSprite.getPosition().x == coords::carFinishX);
 }
 
-void Car::switchCarColor(sf::Sprite& carSprite)
+void Car::switchCarColor()
 {
-	if (carSprite.getTexture() == &m_yellowCarTexture)
+	if (m_carSprite.getTexture() == &m_yellowCarTexture)
 	{
-		carSprite.setTexture(m_redCarTexture);
+		m_carSprite.setTexture(m_redCarTexture);
 	}
 	else
 	{
-		carSprite.setTexture(m_yellowCarTexture);
+		m_carSprite.setTexture(m_yellowCarTexture);
 	}
 }
