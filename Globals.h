@@ -8,6 +8,7 @@
 
 // a monostate class
 // the sin of this project
+// pretty sure i can get rid of these but im too lazy now
 class Globals
 {
 public:

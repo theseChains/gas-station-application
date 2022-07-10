@@ -27,13 +27,13 @@ private:
 
 	State m_appState;
 
-	sf::Font m_font{};
-	sf::Texture m_texture{};
-	sf::Texture m_gasStationFueling{};
+	sf::Texture m_gasStationTexture{};
+	sf::Texture m_gasStationFuelingTexture{};
 	sf::Sprite m_gasStation{};
+
+	sf::Font m_font{};
 	sf::Color m_backgroundColor{};
 
-	void processNonEventState();
 	void processEvents();
 	void render();
 	void loadGasStation();

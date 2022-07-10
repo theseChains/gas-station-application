@@ -65,23 +65,25 @@ void ChangeButton::createListBox()
 	Globals::changeListBox->addItem(L"Забрать всё (" + std::to_wstring(Globals::amountToReturn) + L" p.)");
 
 	// add those only if they exist
-	if (Globals::bills[0] > 0)
+	if (Globals::bills[0])
 		Globals::changeListBox->addItem(L"5000 р. x" + std::to_wstring(Globals::bills[0]));
-	if (Globals::bills[1] > 0)
+	if (Globals::bills[1])
 		Globals::changeListBox->addItem(L"1000 р. x" + std::to_wstring(Globals::bills[1]));
-	if (Globals::bills[2] > 0)
+	if (Globals::bills[2])
 		Globals::changeListBox->addItem(L"500 р. x" + std::to_wstring(Globals::bills[2]));
-	if (Globals::bills[3] > 0)
+	if (Globals::bills[3])
 		Globals::changeListBox->addItem(L"100 р. x" + std::to_wstring(Globals::bills[3]));
-	if (Globals::bills[4] > 0)
+	if (Globals::bills[4])
 		Globals::changeListBox->addItem(L"50 р. x" + std::to_wstring(Globals::bills[4]));
 
 	tgui::Theme changeListBox{ "media/themes/listBoxTheme.txt" };
 	Globals::changeListBox->setRenderer(changeListBox.getRenderer("ListBox"));
 	Globals::changeListBox->setItemHeight(sizes::changeListBoxH);
 	Globals::changeListBox->setPosition(coords::changeListBoxX, coords::changeListBoxY);
+
 	Globals::changeListBox->setSize(sizes::changeListBoxW,
 		Globals::changeListBox->getItemHeight() * Globals::changeListBox->getItemCount() + 5);
+
 	Globals::gui.add(Globals::changeListBox);
 }
 
@@ -126,6 +128,7 @@ void changeListBoxCallback(tgui::String item)
 		--Globals::bills[4];
 		ChangeButton::removeListBox();
 	}
+	// if user took everything
 	else
 	{
 		Globals::amountToReturn = 0;

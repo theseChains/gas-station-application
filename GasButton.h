@@ -22,8 +22,7 @@ private:
 public:
 	GasButton();
 
-	// make getters for these
-	sf::Text m_exchangeRate{}; // make these render only if ...
+	sf::Text m_exchangeRate{};
 	sf::Text m_sliderValues{};
 
 	static int m_tempSliderValue;

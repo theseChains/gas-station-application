@@ -7,11 +7,9 @@
 
 class Car
 {
-	// fix!!!
-public:
+private:
 	sf::Texture m_redCarTexture{};
 	sf::Texture m_yellowCarTexture{};
-
 
 public:
 	Car();

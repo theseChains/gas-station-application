@@ -10,6 +10,9 @@
 
 class InsertButton : public Button
 {
+public:
+	static int m_tempSum;
+
 private:
 	static tgui::ListBox::Ptr m_listBox;
 	tgui::Button::Ptr m_checkmark{};
@@ -26,8 +29,6 @@ public:
 	void createListBox();
 	static void removeListBox();
 	void handleInput();
-
-	static int m_tempSum;
 };
 
 #endif

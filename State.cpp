@@ -1,13 +1,17 @@
 #include "State.h"
 
 State::State(InsertButton& insertButton, ChangeButton& changeButton, ReturnButton& returnButton,
-	GasButton& petrol95Button, GasButton& petrol92Button, Car& car)
+	GasButton& petrol95Button, GasButton& petrol92Button, Car& car, sf::Sprite& gasStation,
+	sf::Texture& gasStationTexture, sf::Texture& gasStationFuelingTexture)
 	: m_insertButton{ insertButton },
 	m_changeButton{ changeButton },
 	m_returnButton{ returnButton },
 	m_petrol95Button{ petrol95Button },
 	m_petrol92Button{ petrol92Button },
-	m_car{ car }
+	m_car{ car },
+	m_gasStation{ gasStation },
+	m_gasStationTexture{ gasStationTexture },
+	m_gasStationFuelingTexture{ gasStationFuelingTexture }
 {
 }
 
@@ -52,7 +56,7 @@ void State::registerStates()
 	{
 		m_changeButton.setActive(false);
 	}
-	// where do i put this..
+	
 	if ((!Globals::amountToReturn) && (!Globals::sum) && (!InsertButton::m_tempSum)
 		&& !(m_petrol95Button.noChangeLeft()) && !(m_petrol92Button.noChangeLeft()))
 	{
@@ -116,5 +120,15 @@ void State::processNonEventState()
 		m_petrol92Button.setNoChangeLeft(false);
 
 		Globals::mainScreenText.setString(text::waitForPayment);
+	}
+
+	if (m_car.isInFuelingPlace())
+	{
+		m_gasStation.setTexture(m_gasStationFuelingTexture);
+	}
+
+	if (m_petrol95Button.isFueled() || m_petrol92Button.isFueled())
+	{
+		m_gasStation.setTexture(m_gasStationTexture);
 	}
 }

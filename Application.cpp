@@ -4,11 +4,13 @@
 
 Application::Application()
 	: m_window{ sf::VideoMode(1300, 650), "Application" },
-	m_texture{},
+	m_gasStationTexture{},
+	m_gasStationFuelingTexture{},
 	m_gasStation{},
 	m_font{},
 	m_backgroundColor{ 255, 255, 204 },
-	m_appState{ m_insertButton, m_changeButton, m_returnButton, m_petrol95Button, m_petrol92Button, m_car }
+	m_appState{ m_insertButton, m_changeButton, m_returnButton, m_petrol95Button, m_petrol92Button, m_car,
+				m_gasStation, m_gasStationTexture, m_gasStationFuelingTexture }
 {
 	m_window.setFramerateLimit(60);
 	Globals::gui.setTarget(m_window);
@@ -21,17 +23,17 @@ Application::Application()
 
 void Application::loadGasStation()
 {
-	if (!m_texture.loadFromFile("media/gasStation.png"))
+	if (!m_gasStationTexture.loadFromFile("media/gasStation.png"))
 	{
 		std::cerr << "Couldn't load texture.\n";
 	}
 
-	if (!m_gasStationFueling.loadFromFile("media/gasStationFueling.png"))
+	if (!m_gasStationFuelingTexture.loadFromFile("media/gasStationFueling.png"))
 	{
 		std::cerr << "Couldn't load texture.\n";
 	}
 
-	m_gasStation.setTexture(m_texture);
+	m_gasStation.setTexture(m_gasStationTexture);
 	m_gasStation.setScale(sizes::gasStationScaleX, sizes::gasStationScaleY);
 	m_gasStation.setPosition(coords::gasStationX, coords::gasStationY);
 }
@@ -77,16 +79,6 @@ void Application::processEvents()
 	}
 
 	m_appState.processNonEventState();
-
-	if (m_car.isInFuelingPlace())
-	{
-		m_gasStation.setTexture(m_gasStationFueling);
-	}
-
-	if (m_petrol95Button.isFueled() || m_petrol92Button.isFueled())
-	{
-		m_gasStation.setTexture(m_texture);
-	}
 }
 
 void Application::render()
@@ -97,13 +89,10 @@ void Application::render()
 	m_window.draw(m_gasStation);
 	m_window.draw(Globals::mainScreenText);
 
-	if (Globals::gasSlider)
-	{
-		m_window.draw(m_petrol95Button.m_sliderValues);
-		m_window.draw(m_petrol95Button.m_exchangeRate);
-		m_window.draw(m_petrol92Button.m_sliderValues);
-		m_window.draw(m_petrol92Button.m_exchangeRate);
-	}
+	m_window.draw(m_petrol95Button.m_sliderValues);
+	m_window.draw(m_petrol95Button.m_exchangeRate);
+	m_window.draw(m_petrol92Button.m_sliderValues);
+	m_window.draw(m_petrol92Button.m_exchangeRate);
 
 	if (Globals::amountToReturn && !(m_petrol95Button.isFueling() || m_petrol92Button.isFueling()))
 	{

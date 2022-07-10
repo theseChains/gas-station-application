@@ -16,7 +16,6 @@ protected:
 public:
 	Button();
 
-	// make getters for these
 	sf::Texture m_moneyTexture{};
 	sf::Sprite m_moneySprite{};
 

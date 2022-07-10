@@ -126,6 +126,7 @@ void GasButton::checkSumSufficiency(GasType gas)
 	else if (Globals::sum >= 0)
 	{
 		Globals::amountToReturn = Globals::sum;
+		// start fueling
 		m_progress = true;
 	}
 }
@@ -150,6 +151,9 @@ void GasButton::handleCheckMarkInput(sf::Event& event, GasType gas)
 		Globals::sum = 0;
 		removeSlider();
 		removeUtilButtons();
+
+		m_exchangeRate.setString("");
+		m_sliderValues.setString("");
 	}
 }
 
@@ -162,6 +166,9 @@ void GasButton::handleCrossInput(sf::Event& event)
 		Globals::mainScreenText.setString(text::sum + std::to_wstring(Globals::sum) + text::chooseGas);
 		removeSlider();
 		removeUtilButtons();
+
+		m_exchangeRate.setString("");
+		m_sliderValues.setString("");
 	}
 }
 
