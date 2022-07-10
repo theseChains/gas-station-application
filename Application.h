@@ -25,6 +25,7 @@ private:
 	GasButton m_petrol92Button{};
 	Car m_car{};
 
+	// should be divided into buttons state, car state and gas station state but whatever
 	State m_appState;
 
 	sf::Texture m_gasStationTexture{};

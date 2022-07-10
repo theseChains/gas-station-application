@@ -18,7 +18,7 @@ State::State(InsertButton& insertButton, ChangeButton& changeButton, ReturnButto
 void State::registerStates()
 {
 	if ((!Globals::amountToReturn) && (!Globals::gasSlider) && (!Globals::sum) && m_car.isInFuelingPlace()
-		&& !(m_petrol95Button.isFueled() || m_petrol92Button.isFueled()))
+		&& !(m_petrol95Button.isFueling() || m_petrol92Button.isFueling()))
 	{
 		m_insertButton.setActive(true);
 	}

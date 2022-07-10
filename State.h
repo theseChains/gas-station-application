@@ -28,8 +28,11 @@ public:
 		GasButton& petrol95Button, GasButton& petrol92Button, Car& car, sf::Sprite& gasStation,
 		sf::Texture& gasStationTexture, sf::Texture& gasStationFuelingTexture);
 
+	// register whether the buttons should be active this frame or not
 	void registerStates();
+	// if the button is active process its input
 	void processStates(sf::Event& event);
+	// process car logic and gas station logic every frame
 	void processNonEventState();
 };
 
