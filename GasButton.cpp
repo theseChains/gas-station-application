@@ -276,3 +276,18 @@ void GasButton::setIsFueled(bool statement)
 {
 	m_fueled = statement;
 }
+
+int GasButton::getTempSliderValue() const
+{
+	return m_tempSliderValue;
+}
+
+sf::Text GasButton::getExchangeRate() const
+{
+	return m_exchangeRate;
+}
+
+sf::Text GasButton::getSliderValues() const
+{
+	return m_sliderValues;
+}

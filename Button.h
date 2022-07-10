@@ -11,16 +11,18 @@ protected:
 	// true if active, false if inactive
 	bool m_state{};
 
+	sf::Texture m_moneyTexture{};
+	sf::Sprite m_moneySprite{};
+
 	void setupMoney();
 
 public:
 	Button();
 
-	sf::Texture m_moneyTexture{};
-	sf::Sprite m_moneySprite{};
-
 	void setActive(bool statement);
 	bool isActive() const;
+
+	sf::Sprite getMoneySprite() const;
 };
 
 #endif

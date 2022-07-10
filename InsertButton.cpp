@@ -55,10 +55,10 @@ void InsertButton::processInput(sf::Event& event)
 		createListBox();
 		handleInput();
 	}
-
+	// process only if there is temp sum
 	if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left
 		&& m_checkmark->isMouseOnWidget(tgui::Vector2f(static_cast<float>(event.mouseButton.x),
-			static_cast<float>(event.mouseButton.y))))
+			static_cast<float>(event.mouseButton.y))) && InsertButton::m_tempSum)
 	{
 		// this is to allow for other buttons to work only after the checkmark button was pressed
 		Globals::sum += InsertButton::m_tempSum;
@@ -139,4 +139,9 @@ void InsertButton::removeListBox()
 {
 	Globals::gui.remove(InsertButton::m_listBox);
 	InsertButton::m_listBox = nullptr;
+}
+
+int InsertButton::getTempSum() const
+{
+	return m_tempSum;
 }

@@ -13,19 +13,20 @@ class GasButton : public Button
 private:
 	tgui::Button::Ptr m_checkMarkButton{};
 	tgui::Button::Ptr m_crossButton{};
+
 	sf::Font m_font{};
-	bool m_progress{};
-	bool m_fueled{};
-	bool m_noChange{};
-	float m_textToShow{};
-
-public:
-	GasButton();
-
 	sf::Text m_exchangeRate{};
 	sf::Text m_sliderValues{};
 
+	bool m_progress{};
+	bool m_fueled{};
+	bool m_noChange{};
+
+	float m_textToShow{};
 	static int m_tempSliderValue;
+
+public:
+	GasButton();
 
 	void createButton(GasType gas);
 	void processInput(sf::Event& event, GasType gas);
@@ -51,6 +52,13 @@ public:
 	void setFueling(bool statement);
 	void setNoChangeLeft(bool statement);
 	void setIsFueled(bool statement);
+
+	int getTempSliderValue() const;
+	sf::Text getExchangeRate() const;
+	sf::Text getSliderValues() const;
+
+	friend void slider92Callback();
+	friend void slider95Callback();
 };
 
 #endif

@@ -57,7 +57,7 @@ void State::registerStates()
 		m_changeButton.setActive(false);
 	}
 	
-	if ((!Globals::amountToReturn) && (!Globals::sum) && (!InsertButton::m_tempSum)
+	if ((!Globals::amountToReturn) && (!Globals::sum) && (!m_insertButton.getTempSum())
 		&& !(m_petrol95Button.noChangeLeft()) && !(m_petrol92Button.noChangeLeft()))
 	{
 		Globals::mainScreenText.setString(text::waitForPayment);
@@ -100,7 +100,6 @@ void State::processNonEventState()
 	}
 
 	// car logic
-
 	// move the car if it hasn't reached its fueling place
 	// move the car if it finished fueling and the user took the change
 	if ((!m_car.isInFuelingPlace() || m_petrol95Button.isFueled() || m_petrol92Button.isFueled())
@@ -112,7 +111,7 @@ void State::processNonEventState()
 	if (m_car.hasFinished())
 	{
 		m_car.switchCarColor();
-		m_car.m_carSprite.setPosition(coords::carStartX, coords::carY);
+		m_car.resetCarPosition();
 
 		m_petrol95Button.setIsFueled(false);
 		m_petrol92Button.setIsFueled(false);

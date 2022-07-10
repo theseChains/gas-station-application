@@ -10,14 +10,12 @@
 
 class InsertButton : public Button
 {
-public:
-	static int m_tempSum;
-
 private:
 	static tgui::ListBox::Ptr m_listBox;
 	tgui::Button::Ptr m_checkmark{};
 	tgui::Theme m_checkmarkTheme{};
 	tgui::Theme m_checkmarkLitTheme{};
+	static int m_tempSum;
 
 public:
 	InsertButton();
@@ -27,8 +25,13 @@ public:
 
 	void createCheckmarkButton();
 	void createListBox();
-	static void removeListBox();
 	void handleInput();
+
+	static void removeListBox();
+
+	int getTempSum() const;
+
+	friend void insertListBoxCallback(tgui::String item);
 };
 
 #endif

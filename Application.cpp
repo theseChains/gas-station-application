@@ -85,18 +85,18 @@ void Application::render()
 {
 	m_window.clear(m_backgroundColor);
 
-	m_window.draw(m_car.m_carSprite);
+	m_window.draw(m_car.getCarSprite());
 	m_window.draw(m_gasStation);
 	m_window.draw(Globals::mainScreenText);
 
-	m_window.draw(m_petrol95Button.m_sliderValues);
-	m_window.draw(m_petrol95Button.m_exchangeRate);
-	m_window.draw(m_petrol92Button.m_sliderValues);
-	m_window.draw(m_petrol92Button.m_exchangeRate);
+	m_window.draw(m_petrol95Button.getSliderValues());
+	m_window.draw(m_petrol95Button.getExchangeRate());
+	m_window.draw(m_petrol92Button.getSliderValues());
+	m_window.draw(m_petrol92Button.getExchangeRate());
 
 	if (Globals::amountToReturn && !(m_petrol95Button.isFueling() || m_petrol92Button.isFueling()))
 	{
-		m_window.draw(m_returnButton.m_moneySprite);
+		m_window.draw(m_returnButton.getMoneySprite());
 	}
 
 	Globals::gui.draw();

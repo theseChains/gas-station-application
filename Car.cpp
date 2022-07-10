@@ -46,3 +46,13 @@ void Car::switchCarColor()
 		m_carSprite.setTexture(m_yellowCarTexture);
 	}
 }
+
+sf::Sprite Car::getCarSprite() const
+{
+	return m_carSprite;
+}
+
+void Car::resetCarPosition()
+{
+	m_carSprite.setPosition(coords::carStartX, coords::carY);
+}

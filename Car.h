@@ -10,17 +10,20 @@ class Car
 private:
 	sf::Texture m_redCarTexture{};
 	sf::Texture m_yellowCarTexture{};
+	sf::Sprite m_carSprite{};
 
 public:
 	Car();
 
-	sf::Sprite m_carSprite{};
-
 	void loadCars();
-	bool isInFuelingPlace();
 	void moveCarSprite();
-	bool hasFinished();
 	void switchCarColor();
+	void resetCarPosition();
+
+	bool hasFinished();
+	bool isInFuelingPlace();
+
+	sf::Sprite getCarSprite() const;
 };
 
 #endif

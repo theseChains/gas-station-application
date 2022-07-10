@@ -19,3 +19,8 @@ bool Button::isActive() const
 {
 	return m_state;
 }
+
+sf::Sprite Button::getMoneySprite() const
+{
+	return m_moneySprite;
+}
